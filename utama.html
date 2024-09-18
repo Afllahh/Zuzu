@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zuzuzu</title>
+</head>
+
+<body>
+    <video autoplay muted loop class="background-video">
+        <source src="back.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    
+    <div class="container">
+        <div class="center">
+            <div class="rectangle">
+                <h2 id="typed-text"></h2> 
+                <p id="typed-description"></p>
+                <div class="buttons">
+                    <button class="about-button">About me</button>
+                    <button class="detail-button">Detail</button>
+                    <button class="social-media-button">Social Media</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="additional-info" id="additional-info">
+        <div class="container">
+            <div class="rectangle additional-rectangle" id="additional-content"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const typedText = document.getElementById('typed-text');
+            const typedDescription = document.getElementById('typed-description');
+            const additionalRectangle = document.getElementById('additional-content');
+            const additionalInfo = document.getElementById('additional-info');
+            const delay = 100;
+
+            let typingInterval = null;
+
+            function typeWriter(element, text, delay) {
+                clearInterval(typingInterval);
+                element.textContent = ''; 
+                element.classList.remove('typing');
+                let i = 0;
+                typingInterval = setInterval(() => {
+                    if (i < text.length) {
+                        element.textContent += text.charAt(i);
+                        i++;
+                    } else {
+                        clearInterval(typingInterval);
+                    }
+                }, delay);
+
+                setTimeout(() => {
+                    element.classList.add('typing');
+                }, 500); 
+            }
+
+            typeWriter(typedText, "Welcome To ZuzuK9s Page", delay);
+
+            const aboutButton = document.querySelector('.about-button');
+            const detailButton = document.querySelector('.detail-button');
+            const socialMediaButton = document.querySelector('.social-media-button');
+
+            aboutButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                typedText.textContent = "Welcome To ZuzuK9s Page";
+                typeWriter(typedDescription, "A little information about me", delay);
+                additionalRectangle.innerHTML = `
+                    <p>I am a student who is interested in technology, vehicles, and also games. I think playing games is not just entertainment but a place to motivate me.</p>
+                `;
+                additionalInfo.style.display = 'block';
+                additionalInfo.style.bottom = '220px'; 
+            });
+
+            detailButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                typedText.textContent = "Welcome To ZuzuK9s Page";
+                typeWriter(typedDescription, "My skills and education", delay);
+                additionalRectangle.innerHTML = `
+                    <div class="details">
+                        <div class="skills">
+                            <h2>Skills</h2>
+                            <div class="skill-list">
+                                <p>Arduino</p>
+                                <p>Blender</p>
+                                <p>HTML</p>
+                            </div>
+                            <div class="skill-list">
+                                <p>CSS</p>
+                                <p>C#</p>
+                                <p>Java</p>
+                            </div>
+                        </div>
+                        <div class="education">
+                            <h2>Education</h2>
+                            <div class="education-list">
+                                <p>Smp Telkom Purwokerto</p>
+                                <p>SMK Telkom Purwokerto</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                additionalInfo.style.display = 'block';
+                additionalInfo.style.bottom = '10px'; 
+            });
+
+            socialMediaButton.addEventListener('click', function(event) {
+                event.preventDefault();
+                typedText.textContent = "Welcome To ZuzuK9s Page";
+                typeWriter(typedDescription, "Follow my social media!", delay);
+                additionalRectangle.innerHTML = `
+                    <h2>Social Media</h2>
+                    <div class="social-media-list">
+                        <a href="https://www.instagram.com/rflhh._/" target="_blank"><img src="Instagram.jpeg" alt="Instagram"></a>
+                    </div>
+                `;
+                additionalInfo.style.display = 'block';
+                additionalInfo.style.bottom = '135px'; 
+            });
+        });
+    </script>
+</body>
+</html>
+<style>
+    :root {
+        --info-bottom: 20px; 
+    }
+
+    body, html {
+        height: 100%;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        overflow: hidden; 
+    }
+
+    .background-video {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: -1; 
+        transform: translate(-50%, -50%);
+        object-fit: cover; 
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        position: relative; 
+        z-index: 1; 
+    }
+
+    .rectangle {
+        background-color: #fff;
+        width: 400px;
+        padding: 40px;
+        border: 2px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .rectangle:hover {
+        transform: scale(1.02);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .buttons button {
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 1em;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    .buttons button:hover {
+        background-color: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .additional-info {
+        display: none; 
+        position: absolute;
+        bottom: var(--info-bottom); 
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1000; 
+        transition: bottom 0.3s ease;
+    }
+
+    .additional-rectangle {
+        background-color: #fff;
+        width: 400px;
+        padding: 20px;
+        border: 2px solid #333;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .social-media-list {
+        display: flex;
+        justify-content: center; 
+        margin-top: 10px; 
+    }
+
+    .social-media-list a {
+        margin: 0 10px; 
+    }
+
+    .social-media-list a img {
+        width: 100px; 
+        height: auto; 
+        border-radius: 5px; 
+    }
+
+    .details {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .skills, .education {
+        flex: 1;
+        margin: 0 8px;
+    }
+
+    .skill-list, .education-list {
+        max-width: 200px; 
+    }
+
+    .skill-list p, .education-list p {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 16px;
+        margin: 4px;
+        border-radius: 16px;
+    }
+</style>
